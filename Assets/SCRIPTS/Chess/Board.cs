@@ -98,7 +98,7 @@ namespace Chess
             selectedPiece = null;
         }
 
-        private Piece GetPieceOnSquare(Vector2Int coords)
+        public Piece GetPieceOnSquare(Vector2Int coords)
         {
             if (CheckIfCoordinatesAreOnBoard(coords))
             {
@@ -110,7 +110,7 @@ namespace Chess
             return null;
         }
 
-        private bool CheckIfCoordinatesAreOnBoard(Vector2Int coords)
+        public bool CheckIfCoordinatesAreOnBoard(Vector2Int coords)
         {
             if (coords.x < 0 || coords.y < 0 || coords.x >= BOARD_SIZE || coords.y >=BOARD_SIZE)
                 return false;
