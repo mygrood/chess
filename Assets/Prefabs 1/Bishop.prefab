@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2989927280060842702}
   - component: {fileID: 6280596576791245843}
   - component: {fileID: 6507966720679745654}
+  - component: {fileID: -6004119699033855336}
+  - component: {fileID: 8735494008008757254}
   m_Layer: 0
   m_Name: Bishop
   m_TagString: Untagged
@@ -103,7 +105,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -133,3 +135,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableMoves: []
+--- !u!114 &-6004119699033855336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4792939865644488415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00a4e9785f44bfb9c8984eaf82496a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &8735494008008757254
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4792939865644488415}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1.1612562, y: 2.5846941, z: 1.1436143}
+  m_Center: {x: -0.00000017881393, y: 1.1201159, z: -0.017778188}
