@@ -95,6 +95,7 @@ namespace Chess
             return activePlayer.team == team;
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         public void EndTurn()
         {
             GenerateAllPossiblePlayerMoves(activePlayer);

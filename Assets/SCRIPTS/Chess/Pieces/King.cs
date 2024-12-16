@@ -20,7 +20,7 @@ namespace Chess
             float range = 1;
             foreach (var direction in directions)
             {
-                for (int i = 0; i <= range; i++)
+                for (int i = 1; i <= range; i++)
                 {
                     Vector2Int nextCoords = occupiedSquare + direction * i;
                     Piece piece = board.GetPieceOnSquare(nextCoords);

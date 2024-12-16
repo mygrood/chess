@@ -17,7 +17,7 @@ namespace Chess
         public abstract List<Vector2Int> SelectAvailableSquares();
 
         private void Awake()
-        {
+        { 
             availableMoves = new List<Vector2Int>();
            tweener= GetComponent<IObjectTweener>();
            materialSetter = GetComponent<MaterialSetter>();
@@ -60,5 +60,6 @@ namespace Chess
             this.board = board;
             transform.position = board.CalculatePositionFromCoords(coords);
         }
+        
     }
 }

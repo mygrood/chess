@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Chess
 {
+    [RequireComponent(typeof(SquareSelectorCreator))]
     public class Board : MonoBehaviour
     {
         public const int BOARD_SIZE = 8;
@@ -13,9 +15,11 @@ namespace Chess
         private Piece[,] grid;
         private Piece selectedPiece;
         private ChessGameController chessController;
+        private SquareSelectorCreator squareSelector;
 
         private void Awake()
         {
+            squareSelector = GetComponent<SquareSelectorCreator>();
             CreateGrid();
         }
 
@@ -31,7 +35,8 @@ namespace Chess
 
         internal Vector3 CalculatePositionFromCoords(Vector2Int coords)
         {
-            return bottomLeftSquareTransform.position + new Vector3((squareSize+(float)0.4) * coords.x, 0, (squareSize+(float)0.4) * coords.y); //magic 0.4 - need to fix
+            //return bottomLeftSquareTransform.position + new Vector3((squareSize+(float)0.4) * coords.x, 0, (squareSize+(float)0.4) * coords.y); //magic 0.4 - need to fix
+            return bottomLeftSquareTransform.position + new Vector3((squareSize) * coords.x, 0, (squareSize) * coords.y); 
         }
 
         public bool HasPiece(Piece piece)
@@ -90,12 +95,27 @@ namespace Chess
         private void SelectPiece(Piece piece)
         {
             selectedPiece = piece;
+            List<Vector2Int> selection = selectedPiece.availableMoves;
+            ShowSelectionSquares(selection);
+        }
+
+        private void ShowSelectionSquares(List<Vector2Int> selection)
+        {
+            Dictionary<Vector3,bool> squaresData = new Dictionary<Vector3, bool>();
+            for (int i = 0; i < selection.Count; i++)
+            {
+                Vector3 position = CalculatePositionFromCoords(selection[i]);
+                bool isSquareFree = GetPieceOnSquare(selection[i]) == null;
+                squaresData.Add(position, isSquareFree);
+            }
+            squareSelector.ShowSelection(squaresData);
         }
 
 
         private void DeselectPiece()
         {
             selectedPiece = null;
+            squareSelector.ClearSelection();
         }
 
         public Piece GetPieceOnSquare(Vector2Int coords)
