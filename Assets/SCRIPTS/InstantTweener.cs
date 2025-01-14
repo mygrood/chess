@@ -9,7 +9,6 @@ namespace Game
         {
             transform.position = targetPosition;
         }
-
-        public event Action OnMoveComplete;
+        
     }
 }
