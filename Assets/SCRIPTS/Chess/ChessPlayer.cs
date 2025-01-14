@@ -102,5 +102,10 @@ namespace Chess
 
             return false;
         }
+
+        public void OnGameRestarted()
+        {
+            activePieces.Clear();
+        }
     }
 }

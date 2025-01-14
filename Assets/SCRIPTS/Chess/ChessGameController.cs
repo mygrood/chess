@@ -19,6 +19,7 @@ namespace Chess
 
         [SerializeField] private BoardLayout startingBoardLayout;
         [SerializeField] private Board board;
+        [SerializeField] private ChessUIManager uiManager;
 
         private PieceCreator pieceCreator;
         private ChessPlayer activePlayer;
@@ -47,16 +48,32 @@ namespace Chess
         {
             StartNewGame();
         }
-
-        [ContextMenu("New Game")]
+       
         private void StartNewGame()
         {
+            uiManager.HideUI();
             SetGameState(GameState.Init);
             board.SetDependencies(this);
             CreatePiecesFromLayout(startingBoardLayout);
             activePlayer = whitePlayer;
             GenerateAllPossiblePlayerMoves(activePlayer);
             SetGameState(GameState.Play);
+        }
+
+        [ContextMenu("Start New Game")]
+        public void RestartGame()
+        {
+            DestroyPieces();
+            board.OnGameRestarted();
+            whitePlayer.OnGameRestarted();
+            blackPlayer.OnGameRestarted();
+            StartNewGame();
+        }
+
+        private void DestroyPieces()
+        {
+            whitePlayer.activePieces.ForEach(p=> Destroy(p.gameObject));
+            blackPlayer.activePieces.ForEach(p=> Destroy(p.gameObject));
         }
 
         private void SetGameState(GameState state)
@@ -146,6 +163,7 @@ namespace Chess
         private void EndGame()
         {
             Debug.Log("EndGame");
+            uiManager.OnGameFinished(activePlayer.team.ToString());
             SetGameState(GameState.Finished);
         }
 

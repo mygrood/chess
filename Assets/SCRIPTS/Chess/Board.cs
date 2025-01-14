@@ -171,5 +171,11 @@ namespace Chess
             if (CheckIfCoordinatesAreOnBoard(squareCoords))
                 grid[squareCoords.x, squareCoords.y] = piece;    
         }
+
+        public void OnGameRestarted()
+        {
+            selectedPiece = null;
+            CreateGrid();
+        }
     }
 }
