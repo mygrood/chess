@@ -7,11 +7,14 @@ namespace Chess
     {
         private Vector2Int[] directions = new Vector2Int[]
         {
+            Vector2Int.left,
+            Vector2Int.up,
+            Vector2Int.right,
+            Vector2Int.down,
             new Vector2Int(1, 1),
             new Vector2Int(1, -1),
             new Vector2Int(-1, 1),
-            new Vector2Int(-1, -0),
-            Vector2Int.left, Vector2Int.right, Vector2Int.up, Vector2Int.down
+            new Vector2Int(-1,- 1),
         };
 
         public override List<Vector2Int> SelectAvailableSquares()
@@ -20,7 +23,7 @@ namespace Chess
             float range = Board.BOARD_SIZE;
             foreach (var direction in directions)
             {
-                for (int i = 0; i <= range; i++)
+                for (int i = 1; i <= range; i++)
                 {
                     Vector2Int nextCoords = occupiedSquare + direction * i;
                     Piece piece = board.GetPieceOnSquare(nextCoords);
