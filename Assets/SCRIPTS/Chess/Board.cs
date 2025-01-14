@@ -77,10 +77,28 @@ namespace Chess
 
         private void OnSelectedPieceMoved(Vector2Int coords, Piece piece)
         {
+            TryToTakeOppositePiece(coords);
             UpdateBoardOnPieceMove(coords, piece.occupiedSquare, piece, null);
             selectedPiece.MovePiece(coords);
             DeselectPiece();
             EndTurn();
+        }
+
+        private void TryToTakeOppositePiece(Vector2Int coords)
+        {
+            Piece piece = GetPieceOnSquare(coords);
+            if(piece != null&&!selectedPiece.IsFromSameTeam(piece))
+                TakePiece(piece);
+        }
+
+        private void TakePiece(Piece piece)
+        {
+            if (piece)
+            {
+                grid[piece.occupiedSquare.x, piece.occupiedSquare.y] = null;
+                chessController.OnPieceRemoved(piece);
+                
+            }
         }
 
         private void EndTurn()
@@ -96,6 +114,7 @@ namespace Chess
 
         private void SelectPiece(Piece piece)
         {
+            chessController.DisableAttackOnPieceType<King>(piece);
             selectedPiece = piece;
             List<Vector2Int> selection = selectedPiece.availableMoves;
             ShowSelectionSquares(selection);

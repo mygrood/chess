@@ -59,6 +59,7 @@ namespace Chess
                 opponent.GenerateAllPossibleMoves();
                 if (opponent.CheckIfIsAttackingPiece<T>())
                     coordsToRemove.Add(coords);
+                board.UpdateBoardOnPieceMove(selectedPiece.occupiedSquare, coords, selectedPiece, pieceOnSquare);
             }
 
             foreach (var coords in coordsToRemove)

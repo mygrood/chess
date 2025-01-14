@@ -158,5 +158,17 @@ namespace Chess
         {
             return player == whitePlayer ? blackPlayer : whitePlayer;
         }
+
+        public void DisableAttackOnPieceType <T>(Piece piece) where T : Piece
+        {
+            activePlayer.RemoveMovesEnablingAttackOnPiece<T>(GetOpponentToPlayer(activePlayer), piece);
+        }
+
+        public void OnPieceRemoved(Piece piece)
+        {
+            ChessPlayer pieceOwner = (piece.team == TeamColor.White) ? whitePlayer : blackPlayer;
+            pieceOwner.RemovePiece(piece);
+            Destroy(piece.gameObject);
+        }
     }
 }
