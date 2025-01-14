@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 3283334686188415758}
   - component: {fileID: 3513155785460050270}
   - component: {fileID: 6967248391102777020}
-  - component: {fileID: -8793934268043098518}
   - component: {fileID: 6383219582011958848}
+  - component: {fileID: 2170633207209657377}
   m_Layer: 0
   m_Name: Rook
   m_TagString: Untagged
@@ -135,18 +135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableMoves: []
---- !u!114 &-8793934268043098518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2603870322979232871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c00a4e9785f44bfb9c8984eaf82496a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &6383219582011958848
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -168,3 +156,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0688708, y: 1.8515171, z: 1.0526325}
   m_Center: {x: -0.00000014901161, y: 0.75352746, z: -0.0163638}
+--- !u!114 &2170633207209657377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2603870322979232871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0679bf018f64ad2aa65cc09a1401518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2.5

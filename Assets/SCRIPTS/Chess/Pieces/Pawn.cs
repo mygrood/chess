@@ -37,8 +37,8 @@ namespace Chess
             // Атака по диагоналям
             Vector2Int[] takeDirections = new Vector2Int[]
             {
-                new Vector2Int(1, direction.y),
-                new Vector2Int(-1, direction.y)
+                new Vector2Int(-1, direction.y),
+                new Vector2Int(1, direction.y)
             };
             for (int i = 0; i < takeDirections.Length; i++)
             {
@@ -54,6 +54,7 @@ namespace Chess
                     TryToAddMove(nextCoords);
                 }
             }
+
             return availableMoves;
         }
 
@@ -65,7 +66,7 @@ namespace Chess
 
         private void CheckPromotion()
         {
-            int endOfBoardYCoord = team == TeamColor.White ? Board.BOARD_SIZE-1 :0;
+            int endOfBoardYCoord = team == TeamColor.White ? Board.BOARD_SIZE - 1 : 0;
             if (occupiedSquare.y == endOfBoardYCoord)
                 board.PromotePiece(this);
         }

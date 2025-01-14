@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 4095722124982267161}
   - component: {fileID: 6439875889693317169}
   - component: {fileID: 9038743723097019732}
-  - component: {fileID: 3875339624544255749}
   - component: {fileID: 1222149258044633640}
+  - component: {fileID: 7556346611153023387}
   m_Layer: 0
   m_Name: Pawn
   m_TagString: Untagged
@@ -135,18 +135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableMoves: []
---- !u!114 &3875339624544255749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8549953835667754408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c00a4e9785f44bfb9c8984eaf82496a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1222149258044633640
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -168,3 +156,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0076535, y: 1.607325, z: 0.9923451}
   m_Center: {x: 0.0000009536743, y: 0.8036625, z: -0.015426159}
+--- !u!114 &7556346611153023387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8549953835667754408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0679bf018f64ad2aa65cc09a1401518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2.5

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1688554753804857417}
   - component: {fileID: 3257377744671070952}
   - component: {fileID: 752969878811932834}
-  - component: {fileID: -2009686547456145504}
+  - component: {fileID: 3342260016153676559}
   - component: {fileID: 3436680280343142432}
   m_Layer: 0
   m_Name: King
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableMoves: []
---- !u!114 &-2009686547456145504
+--- !u!114 &3342260016153676559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,9 +144,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6859320810593091031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c00a4e9785f44bfb9c8984eaf82496a6, type: 3}
+  m_Script: {fileID: 11500000, guid: d0679bf018f64ad2aa65cc09a1401518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2.5
 --- !u!65 &3436680280343142432
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3677303592199045370}
   - component: {fileID: 6765257932599493286}
   - component: {fileID: 2217369925626294273}
-  - component: {fileID: -3337108355929316961}
+  - component: {fileID: 3462070454549949307}
   - component: {fileID: 4041843534766058652}
   m_Layer: 0
   m_Name: Knight
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableMoves: []
---- !u!114 &-3337108355929316961
+--- !u!114 &3462070454549949307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,9 +144,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5913395262023862129}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c00a4e9785f44bfb9c8984eaf82496a6, type: 3}
+  m_Script: {fileID: 11500000, guid: fabb9d4b32d34991908761b70964ce9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2.5
+  height: 2.5
 --- !u!65 &4041843534766058652
 BoxCollider:
   m_ObjectHideFlags: 0
