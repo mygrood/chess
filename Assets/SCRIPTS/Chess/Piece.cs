@@ -60,6 +60,15 @@ namespace Chess
             this.board = board;
             transform.position = board.CalculatePositionFromCoords(coords);
         }
-        
+
+        public bool IsAttackingPieceOfType<T>()
+        {
+            foreach (var square in availableMoves)
+            {
+                if (board.GetPieceOnSquare(square) is T)
+                    return true;
+            }
+            return false;
+        }
     }
 }

@@ -55,6 +55,8 @@ namespace Chess
 
         public void OnSquareSelected(Vector3 inputPosition)
         {
+            if (!chessController.IsGameInProgress())
+                return;
             Vector2Int coords = CalculateCoordsFromPosition(inputPosition);
             Piece piece = GetPieceOnSquare(coords);
             if (selectedPiece)
@@ -86,7 +88,7 @@ namespace Chess
             chessController.EndTurn();
         }
 
-        private void UpdateBoardOnPieceMove(Vector2Int newCoords, Vector2Int oldCoords, Piece newPiece, Piece oldPiece)
+        public void UpdateBoardOnPieceMove(Vector2Int newCoords, Vector2Int oldCoords, Piece newPiece, Piece oldPiece)
         {
             grid[oldCoords.x, oldCoords.y] = oldPiece;
             grid[newCoords.x, newCoords.y] = newPiece;

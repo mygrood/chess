@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Game;
 using UnityEngine;
 
@@ -9,8 +10,13 @@ namespace Chess
     [RequireComponent(typeof(PieceCreator))]
     public class ChessGameController : MonoBehaviour
     {
-        
-        
+        private enum GameState
+        {
+            Init,
+            Play,
+            Finished
+        }
+
         [SerializeField] private BoardLayout startingBoardLayout;
         [SerializeField] private Board board;
 
@@ -18,6 +24,7 @@ namespace Chess
         private ChessPlayer activePlayer;
         private ChessPlayer whitePlayer;
         private ChessPlayer blackPlayer;
+        private GameState state;
 
         private void Awake()
         {
@@ -44,10 +51,22 @@ namespace Chess
         [ContextMenu("New Game")]
         private void StartNewGame()
         {
+            SetGameState(GameState.Init);
             board.SetDependencies(this);
             CreatePiecesFromLayout(startingBoardLayout);
             activePlayer = whitePlayer;
             GenerateAllPossiblePlayerMoves(activePlayer);
+            SetGameState(GameState.Play);
+        }
+
+        private void SetGameState(GameState state)
+        {
+            this.state = state;
+        }
+
+        public bool IsGameInProgress()
+        {
+            return state == GameState.Play;
         }
 
         private void CreatePiecesFromLayout(BoardLayout layout)
@@ -78,11 +97,10 @@ namespace Chess
             newPiece.SetData(squareCoords, team, board);
             Material teamMaterial = pieceCreator.GetTeamMaterial(team);
             newPiece.SetMaterial(teamMaterial);
-            
+
             board.SetPieceOnBoard(squareCoords, newPiece);
             ChessPlayer currentPlayer = team == TeamColor.White ? whitePlayer : blackPlayer;
             currentPlayer.AddPiece(newPiece);
-
         }
 
         private void GenerateAllPossiblePlayerMoves(ChessPlayer player)
@@ -100,7 +118,35 @@ namespace Chess
         {
             GenerateAllPossiblePlayerMoves(activePlayer);
             GenerateAllPossiblePlayerMoves(GetOpponentToPlayer(activePlayer));
-            ChangeActiveTeam();
+            if (CheckIfGameIsFinished())
+                EndGame();
+            else
+                ChangeActiveTeam();
+        }
+
+        private bool CheckIfGameIsFinished()
+        {
+            Piece[] kingAttackingPieces = activePlayer.GetOpposingAttackersOfType<King>();
+            if (kingAttackingPieces.Length > 0)
+            {
+                ChessPlayer oppositePlayer = GetOpponentToPlayer(activePlayer);
+                Piece attackedKing = oppositePlayer.GetPiecesOfType<King>().FirstOrDefault();
+                oppositePlayer.RemoveMovesEnablingAttackOnPiece<King>(activePlayer, attackedKing);
+                
+                int availableKingMoves = attackedKing.availableMoves.Count;
+                if (availableKingMoves == 0)
+                {
+                    bool canCoverKing = oppositePlayer.CanHidePieceFromAttack<King>(activePlayer);
+                    if (!canCoverKing) return true;
+                }
+            }
+            return false;
+        }
+
+        private void EndGame()
+        {
+            Debug.Log("EndGame");
+            SetGameState(GameState.Finished);
         }
 
         private void ChangeActiveTeam()
