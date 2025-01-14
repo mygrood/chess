@@ -108,7 +108,7 @@ namespace Chess
             }
         }
 
-        private void CreatePieceAndInitialize(Vector2Int squareCoords, TeamColor team, Type pieceType)
+        public void CreatePieceAndInitialize(Vector2Int squareCoords, TeamColor team, Type pieceType)
         {
             Piece newPiece = pieceCreator.CreatePiece(pieceType).GetComponent<Piece>();
             newPiece.SetData(squareCoords, team, board);

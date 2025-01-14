@@ -177,5 +177,12 @@ namespace Chess
             selectedPiece = null;
             CreateGrid();
         }
+
+        public void PromotePiece(Piece piece)
+        {
+            TakePiece(piece);
+            chessController.CreatePieceAndInitialize(piece.occupiedSquare, piece.team, typeof(Queen));
+            
+        }
     }
 }
