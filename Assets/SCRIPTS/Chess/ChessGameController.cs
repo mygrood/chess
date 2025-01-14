@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Game;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Chess
 {
     [RequireComponent(typeof(PieceCreator))]
+    [RequireComponent(typeof(ChessCameraController))]
     public class ChessGameController : MonoBehaviour
     {
         private enum GameState
@@ -20,12 +22,14 @@ namespace Chess
         [SerializeField] private BoardLayout startingBoardLayout;
         [SerializeField] private Board board;
         [SerializeField] private ChessUIManager uiManager;
+        
 
         private PieceCreator pieceCreator;
         private ChessPlayer activePlayer;
         private ChessPlayer whitePlayer;
         private ChessPlayer blackPlayer;
         private GameState state;
+        private ChessCameraController cameraController; 
 
         private void Awake()
         {
@@ -36,6 +40,7 @@ namespace Chess
         private void SetDependencies()
         {
             pieceCreator = GetComponent<PieceCreator>();
+            cameraController = GetComponent<ChessCameraController>();
         }
 
         private void CreatePlayers()
@@ -67,6 +72,7 @@ namespace Chess
             board.OnGameRestarted();
             whitePlayer.OnGameRestarted();
             blackPlayer.OnGameRestarted();
+            cameraController.ResetCamera();
             StartNewGame();
         }
 
@@ -138,7 +144,11 @@ namespace Chess
             if (CheckIfGameIsFinished())
                 EndGame();
             else
+            { 
                 ChangeActiveTeam();
+
+            }
+                
         }
 
         private bool CheckIfGameIsFinished()

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Game
@@ -8,5 +9,7 @@ namespace Game
         {
             transform.position = targetPosition;
         }
+
+        public event Action OnMoveComplete;
     }
 }
